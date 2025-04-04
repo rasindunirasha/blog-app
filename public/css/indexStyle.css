@@ -1,0 +1,210 @@
+/* General Styles for Blog List Page */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #021938; /* Dark background color */
+    color: #333; /* Text color */
+    margin: 0;
+    padding: 0;
+}
+
+/* Container for the blog list */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 30px;
+    position: relative; /* Ensures the button position is relative to this container */
+}
+
+/* Create New Blog Button */
+.create-blog-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background-color: #0d4003; /* Bright Green for primary button */
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    position: absolute; /* Absolute position within the container */
+    top: 20px; /* 20px from the top */ 
+    right: 20px; /* 20px from the right */
+    font-size: 16px;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.create-blog-btn:hover {
+    background-color: #252423; /* Darker shade on hover */
+}
+
+/* Heading */
+h1 {
+    font-size: 56px;
+    color: #ffffff;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+/* Blog List Styling */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 85px;
+    justify-content: center;
+}
+
+li {
+    background-color: #bfc2c4;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    padding: 20px;
+    width: 300px;
+    position: relative; /* Important for positioning icons inside */
+    transition: transform 0.3s ease-in-out;
+
+}
+
+li:hover {
+    transform: scale(1.05);
+}
+
+h2 {
+    font-size: 24px;
+    color: #161617; /* Dark text for blog titles */
+    margin-bottom: 10px;
+}
+
+p {
+    font-size: 16px;
+    color: #302e2e; /* Darker text color for the paragraph */
+    margin-bottom: 10px;
+}
+
+/* Buttons Styling for View, Edit, and Delete - Horizontal layout */
+.buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px; 
+    margin-top: 15px; 
+}
+
+/* View Button */
+.btn-view {
+position: absolute;
+    bottom: 5px;
+    left: 17px;
+    background: none;
+    border: none;
+    color: #4c77a2;
+    font-size: 18px;
+    cursor: pointer;
+    
+}
+
+.btn-view:hover {
+    color: #002860; /* Darker blue on hover */
+}
+
+/* Edit Button */
+.btn-edit {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    color: #6db15f;
+    font-size: 18px;
+    text-decoration: none;
+}
+
+.btn-edit:hover {
+    color: #d98703; /* Darker yellow on hover */
+}
+
+/* Delete Button */
+.btn-delete {
+    /* base styles */
+    position: absolute;
+    bottom: 3px;
+    right: 1px;
+    background: none;
+    border: none;
+    color: #7e7776;
+    font-size: 18px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-delete:hover {
+    color: #9a0f00; 
+}
+
+.delete-form {
+    position: absolute;
+    bottom: 8px;
+    right: 6px;
+}
+
+/* Success alert box */
+.alert-success {
+
+    color: white;
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    animation: fadeOut 2s ease-in-out forwards;
+    opacity: 1;
+}
+
+/* Animation for fade-out */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    90% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        display: none;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+
+    a, button {
+        font-size: 14px;
+        padding: 8px 15px;
+    }
+
+    a[href="{{ route('blogs.create') }}"] {
+        font-size: 14px;
+        padding: 10px 15px;
+    }
+
+    /* Adjust the blog list for smaller screens */
+    ul {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    li {
+        width: 100%;
+    }
+}
