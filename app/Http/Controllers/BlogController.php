@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers;
 
 use App\Models\Blog;
@@ -6,85 +7,78 @@ use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    // Display a listing of the blogs
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::latest()->paginate(6);
         return view('blogs.index', compact('blogs'));
     }
 
-    // Show the form for creating a new blog
     public function create()
     {
         return view('blogs.create');
     }
 
-    // Store a newly created blog in the database
     public function store(Request $request)
     {
-        $request->validate([
-            'title' => 'required',
+        $validated = $request->validate([
+            'title' => 'required|max:255',
             'content' => 'required',
-            'writer_name' => 'required',
+            'writer_name' => 'required|max:100',
+            'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        Blog::create([
-            'title' => $request->title,
-            'content' => $request->content,
-            'writer_name' => $request->writer_name,
-        ]);
+        $blog = Blog::create($validated);
 
-        return redirect()->route('blogs.index')->with('success', 'Blog created successfully.');
-    }
+        // Handle image uploads if needed
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $image) {
+                $path = $image->store('blog_images', 'public');
+                $blog->images()->create(['path' => $path]);
+            }
+        }
 
-    // Show the form for editing the specified blog
-    public function edit($id)
-{
-    $blog = Blog::findOrFail($id);
-    return view('blogs.edit', compact('blog'));
-}
-
-
-    // Update the specified blog in the database
-    public function update(Request $request, $id)
-    {
-        // Find the blog by its ID
-        $blog = Blog::findOrFail($id);
-    
-        // Validate the incoming data
-        $request->validate([
-            'title' => 'required',
-            'content' => 'required',
-            'writer_name' => 'required',
-        ]);
-    
-        // Update the blog with the validated data
-        $blog->update($request->all());
-    
-        // Redirect back to the blog index with a success message
         return redirect()->route('blogs.index')
-                         ->with('success', 'Blog updated successfully.');
+                        ->with('success', 'Blog created successfully!');
     }
-    
 
-    // Remove the specified blog from the database
-   // In your BlogController
-public function destroy($id)
+    public function show(Blog $blog)
+    {
+        return view('blogs.show', compact('blog'));
+    }
+
+    public function edit(Blog $blog)
+    {
+        return view('blogs.edit', compact('blog'));
+    }
+
+    public function update(Request $request, Blog $blog)
 {
-    $blog = Blog::findOrFail($id);
-    $blog->delete();
+    $validated = $request->validate([
+        'title' => 'required|max:255',
+        'content' => 'required',
+        'writer_name' => 'required|max:100',
+        'images.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+    ]);
 
-    // Flash success message
-    session()->flash('success', 'Blog deleted successfully.');
+    $blog->update($validated);
 
-    return redirect()->route('blogs.index');
+    // Handle newly uploaded images
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $path = $image->store('blog_images', 'public');
+            $blog->images()->create(['path' => $path]);
+        }
+    }
+
+    return redirect()->route('blogs.index')->with('success', 'Blog updated successfully!');
 }
 
 
-    // Show the details of a single blog post
-    public function show($id)
+    public function destroy(Blog $blog)
     {
-        $blog = Blog::findOrFail($id);
-        return view('blogs.show', compact('blog'));
+        $blog->delete();
+        
+        return redirect()->route('blogs.index')
+                        ->with('success', 'Blog deleted successfully!');
     }
 }

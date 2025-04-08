@@ -1,147 +1,224 @@
-/* General Styles for Create Blog Page */
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #2c3e50; /* Darker Blue-Gray background for the page */
-    color: #ecf0f1; /* Light text color for readability */
-    margin: 0;
-    padding: 0;
-}
-
-/* Container for the content */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 30px;
-    background-color: #34495e; /* Darker gray-blue background for the container */
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 50px;
-}
-
-/* Title */
-h1 {
-    font-size: 32px;
-    color: #ecf0f1; /* Light color for the title */
-    margin-bottom: 20px;
-    text-align: center;
-}
-
-/* Alert for errors */
-.alert {
-    background-color: #e74c3c; /* Red for alert messages */
-    color: #ffffff;
-    padding: 10px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-}
-
-.alert ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-}
-
-.alert ul li {
-    margin: 5px 0;
-}
-
-/* Form styling */
-form {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-/* Form Group */
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-label {
-    font-size: 16px;
-    color: #ecf0f1; /* Light color for labels */
-    margin-bottom: 5px;
-}
-
-input, textarea {
-    padding: 12px;
-    font-size: 16px;
-    border: 1px solid #7f8c8d; /* Light gray border */
-    border-radius: 5px;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* Placeholder Styling */
-input::placeholder, textarea::placeholder {
-    color: #bdc3c7; /* Light gray for placeholder text */
-}
-
-/* Focus Effect */
-input:focus, textarea:focus {
-    border-color: #3498db; /* Blue for focus effect */
-    outline: none;
-}
-
-/* Submit Button Styling */
-button.btn-submit {
-    padding: 12px 20px;
-    font-size: 16px;
-    background-color: #3498db; /* Blue for the submit button */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button.btn-submit:hover {
-    background-color: #2980b9; /* Darker blue for hover effect */
-}
-
-/* Back to Blog List Button */
-a.btn-secondary {
-    text-decoration: none;
-    padding: 12px 20px;
-    background-color: #95a5a6; /* Light gray for the secondary button */
-    color: white;
-    border-radius: 5px;
-    display: inline-block;
-    text-align: center;
-    margin-top: 15px;
-}
-
-a.btn-secondary:hover {
-    background-color: #7f8c8d; /* Darker gray for hover effect */
-}
-
-/* Responsive Design */
-@media screen and (max-width: 768px) {
+    /* Edit Blog Form Styles */
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2, #89f7fe);
+        background-size: 300% 300%;
+        animation: gradientFlow 10s ease infinite;
+        margin: 0;
+        padding: 0;
+        color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    @keyframes gradientFlow {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
     .container {
-        padding: 20px;
-        margin-top: 20px;
+        width: 40%;
+        max-width: 1200px; /* Increased from 850px to 1200px */
+        padding: 40px;
+        margin: 50px auto;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        border-radius: 20px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        animation: fadeSlideIn 0.8s ease-out both;
+        color: #f0f0f0;
+    }
+
+    @keyframes fadeSlideIn {
+        0% {
+            opacity: 0;
+            transform: translateY(40px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     h1 {
-        font-size: 28px;
+        font-family: 'Playfair Display', serif;
+        font-size: 55px;
+        color: #333;
+        text-align: center;
+        margin-bottom: 30px;
     }
 
-    label {
-        font-size: 14px;
+    .form-group {
+        margin-bottom: 25px;
     }
 
-    input, textarea {
-        font-size: 14px;
+    .form-group label {
+        display: block;
+        margin-bottom: 8px;
+        font-weight: 500;
+        color: #555;
     }
 
-    button.btn-submit {
-        font-size: 14px;
-        padding: 10px 15px;
+    .form-group input,
+    .form-group textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ddd;
+        border-radius: 6px;
+        font-family: 'Poppins', sans-serif;
+        font-size: 16px;
+        transition: border 0.3s;
     }
 
-    a.btn-secondary {
-        padding: 10px 15px;
-        font-size: 14px;
+    .form-group input:focus,
+    .form-group textarea:focus {
+        border-color: #4CAF50;
+        outline: none;
+        box-shadow: 0 0 5px rgba(76, 175, 80, 0.3);
     }
-}
+
+    textarea {
+        min-height: 200px;
+        resize: vertical;
+    }
+
+        /* Button Container */
+        .form-actions {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        /* Button Base */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Icon spacing */
+        .btn i {
+            margin-right: 10px;
+            font-size: 18px;
+        }
+
+        /* Submit Button - Gradient Style */
+        .btn-submit {
+            background: linear-gradient(135deg, #00c9ff, #92fe9d);
+            color: black;
+            box-shadow: 0 4px 15px rgba(0, 201, 255, 0.3);
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 201, 255, 0.4);
+        }
+
+        /* Optional glow animation */
+        .btn-submit::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2), transparent 70%);
+            animation: shine 2.5s infinite linear;
+            transform: rotate(45deg);
+            pointer-events: none;
+        }
+
+        /* Secondary Button - Soft Flat Look */
+        .btn-secondary {
+            background-color: #f5f5f5;
+            color: #333;
+            border: 1px solid #ddd;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e4e4e4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        /* Click effect */
+        .btn:active {
+            transform: translateY(1px);
+            box-shadow: none;
+        }
+
+        /* Shine Animation Keyframes */
+        @keyframes shine {
+            0% { transform: translateX(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) rotate(45deg); }
+        }
+
+
+        .alert {
+           
+            color: #c62828;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 25px;
+            border-left: 4px solid #c62828;
+        }
+
+        .alert ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px;
+                padding: 20px;
+                min-height: auto;
+            }
+            
+            .form-actions {
+                position: static;
+                display: flex;
+                justify-content: flex-end;
+                margin-top: 20px;
+            }
+            
+            .btn {
+                width: auto;
+            }
+            
+            .btn-secondary {
+                margin-left: 10px;
+            }
+        }
+        button, .btn {
+            transition: all 0.3s ease;
+            border-radius: 25px;
+            background-color: #ffffff22;
+            color: #4b4848;
+            padding: 10px 25px;
+            border: none;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+        }
+
+        button:hover, .btn:hover {
+            transform: translateY(-2px);
+            background-color: #ffffff33;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        }
