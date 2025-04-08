@@ -1,11 +1,32 @@
-* text=auto eol=lf
+# Handle line endings
+* text=auto
 
-*.blade.php diff=html
-*.css diff=css
-*.html diff=html
-*.md diff=markdown
-*.php diff=php
+# PHP files
+*.php text
+*.blade.php text
 
-/.github export-ignore
-CHANGELOG.md export-ignore
-.styleci.yml export-ignore
+# Assets (treat as binary, no diff)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.pdf binary
+*.eot binary
+*.ttf binary
+*.woff binary
+*.woff2 binary
+
+# Node & front-end assets
+*.js text
+*.css text
+*.scss text
+*.vue text
+
+# Prevent Linguist from classifying vendor/ as source code
+/vendor/** linguist-vendored
+/node_modules/** linguist-vendored
+/public/** linguist-vendored
+
+# Prevent .env from ever being treated as text
+.env text eol=lf
